@@ -1,0 +1,62 @@
+spring:
+  kafka:
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      acks: all
+      properties:
+        linger:
+          ms: '5000'
+        max:
+          in:
+            flight:
+              requests:
+                per:
+                  connection: '5'
+        request:
+          timeout:
+            ms: '5000'
+        enable:
+          idempotence: 'true'
+        delivery:
+          timeout:
+            ms: '10000'
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      bootstrap-servers: kafka-1:9092,kafka-2:9094
+    consumer:
+      group-id: task-created-events
+      bootstrap-servers: kafka-1:9092,kafka-2:9094
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: ru.ilyazubkov.nexigntestproj.event
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    topic:
+      name: task-created-events-topic
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: 'true'
+        show_sql: true
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    password: password
+    username: user
+    url: jdbc:postgresql://localhost:5432/taskdb
+
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      idle-timeout: 300000
+      connection-timeout: 20000
+      max-lifetime: 1200000
+
+
+      auto-commit: false
+      validation-timeout: 5000
+      leak-detection-threshold: 60000
+
+      transaction-isolation: TRANSACTION_READ_COMMITTED
