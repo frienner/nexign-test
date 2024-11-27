@@ -115,10 +115,6 @@
                     </from>
                     <to>
                         <image>registry.hub.docker.com/friennen/nexign-test</image>
-                        <auth>
-                            <username>friennen</username>
-                            <password>xwnFSgG6jbL$</password>
-                        </auth>
                         <tags>
                             <tag>latest</tag>
                         </tags>

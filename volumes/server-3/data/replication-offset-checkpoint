@@ -10,7 +10,7 @@ __consumer_offsets 46 0
 __consumer_offsets 23 0
 __consumer_offsets 40 0
 __consumer_offsets 42 0
-task-created-events-topic 2 0
+task-created-events-topic 2 1
 __consumer_offsets 28 0
 __consumer_offsets 3 0
 task-created-events-topic 1 14
